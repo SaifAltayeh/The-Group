@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" fill="none" role="img" aria-label="HN">
+  <rect x="8" y="8" width="144" height="104" stroke="#CEB16F" stroke-width="1" fill="none"/>
+  <text
+    x="80"
+    y="78"
+    text-anchor="middle"
+    fill="#CEB16F"
+    font-family="Didot, 'Bodoni MT', 'Bodoni Moda', 'Times New Roman', serif"
+    font-size="52"
+    font-weight="400"
+    letter-spacing="8"
+  >HN</text>
+</svg>

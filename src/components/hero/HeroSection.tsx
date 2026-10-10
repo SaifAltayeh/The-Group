@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import { ArrowRight } from "lucide-react";
 import { TheGroupLogo } from "@/components/brand/TheGroupLogo";
 import { BrandCollection } from "@/components/hero/BrandCollection";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
@@ -148,10 +149,20 @@ export function HeroSection() {
             {COPY.heroSupport}
           </p>
 
-          <div data-reveal="cta" className="mt-7 sm:mt-9">
+          <div
+            data-reveal="cta"
+            className="mt-7 flex w-full max-w-[22rem] flex-col items-stretch gap-3 sm:mt-9 sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-4"
+          >
             <LuxuryButton href="#our-brands" variant="outline">
               Explore Our Brands
             </LuxuryButton>
+            <a
+              href="https://www.clicksloyalty.com/card/258"
+              className="group relative inline-flex items-center justify-center gap-3 overflow-hidden border border-gold bg-gold px-4 py-3 font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-black transition-[color,border-color,background-color] duration-500 ease-out hover:bg-transparent hover:text-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold sm:px-7 sm:py-3.5 sm:text-[11px] sm:tracking-[0.28em]"
+            >
+              <span className="relative z-10">Add Your Loyalty Card</span>
+              <ArrowRight className="relative z-10 h-3.5 w-3.5 stroke-[1.25] transition-transform duration-500 group-hover:translate-x-1" />
+            </a>
           </div>
         </div>
 

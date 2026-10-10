@@ -54,6 +54,23 @@ export function LuxuryButton({
   );
 
   if (href) {
+    const external = href.startsWith("http");
+
+    if (external) {
+      return (
+        <a
+          href={href}
+          onClick={onClick}
+          className={classes}
+          aria-label={ariaLabel}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {content}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} onClick={onClick} className={classes} aria-label={ariaLabel}>
         {content}

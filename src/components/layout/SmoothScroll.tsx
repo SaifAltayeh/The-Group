@@ -51,7 +51,7 @@ function onHashLinkClick(event: MouseEvent, lenis: Lenis | null) {
   if (!anchor) return;
 
   const href = anchor.getAttribute("href");
-  if (!href) return;
+  if (!href || href.startsWith("http")) return;
 
   const id = getSamePageHash(href);
   if (!id || !document.getElementById(id)) return;

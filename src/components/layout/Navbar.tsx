@@ -7,7 +7,7 @@ import { TheGroupLogo } from "@/components/brand/TheGroupLogo";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { ACCOUNT_NAV, PRIMARY_NAV } from "@/lib/constants/navigation";
 import { cn } from "@/lib/cn";
-import { getGsap, prefersInstantMotion } from "@/lib/animations/gsap";
+import { getGsap, prefersReducedMotion } from "@/lib/animations/gsap";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +25,7 @@ export function Navbar() {
   useEffect(() => {
     const { gsap } = getGsap();
     const ctx = gsap.context(() => {
-      if (prefersInstantMotion()) {
+      if (prefersReducedMotion()) {
         gsap.set("[data-nav]", { opacity: 1, y: 0 });
         return;
       }
@@ -33,7 +33,7 @@ export function Navbar() {
       gsap.fromTo(
         "[data-nav]",
         { opacity: 0, y: -16 },
-        { opacity: 1, y: 0, duration: 0.9, delay: 0.2, ease: "power3.out" },
+        { opacity: 1, y: 0, duration: 0.75, delay: 0.08, ease: "power3.out" },
       );
     });
 

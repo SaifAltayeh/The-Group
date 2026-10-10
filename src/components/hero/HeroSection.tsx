@@ -7,7 +7,12 @@ import { BrandCollection } from "@/components/hero/BrandCollection";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { COPY } from "@/lib/constants/brands";
-import { EASE, getGsap, prefersInstantMotion } from "@/lib/animations/gsap";
+import {
+  EASE,
+  getGsap,
+  isCompactViewport,
+  prefersReducedMotion,
+} from "@/lib/animations/gsap";
 
 export function HeroSection() {
   const root = useRef<HTMLElement>(null);
@@ -16,7 +21,7 @@ export function HeroSection() {
     () => {
       const { gsap, ScrollTrigger } = getGsap();
 
-      if (prefersInstantMotion()) {
+      if (prefersReducedMotion()) {
         gsap.set("[data-reveal], [data-house]", {
           opacity: 1,
           y: 0,
@@ -25,63 +30,87 @@ export function HeroSection() {
         return;
       }
 
+      const compact = isCompactViewport();
       const intro = gsap.timeline({ defaults: { ease: EASE.cinematic } });
 
       intro
         .fromTo(
           "[data-reveal='eyebrow']",
-          { opacity: 0, y: 14 },
-          { opacity: 1, y: 0, duration: 0.7 },
-          0.2,
+          { opacity: 0, y: compact ? 10 : 14 },
+          { opacity: 1, y: 0, duration: compact ? 0.5 : 0.7 },
+          compact ? 0.08 : 0.2,
         )
         .fromTo(
           "[data-reveal='mark']",
-          { opacity: 0, y: 22 },
-          { opacity: 1, y: 0, duration: 1 },
-          0.4,
+          { opacity: 0, y: compact ? 16 : 22 },
+          { opacity: 1, y: 0, duration: compact ? 0.7 : 1 },
+          compact ? 0.18 : 0.4,
         )
         .fromTo(
           "[data-reveal='title']",
           { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          0.75,
+          { opacity: 1, y: 0, duration: compact ? 0.55 : 0.8 },
+          compact ? 0.32 : 0.75,
         )
         .fromTo(
           "[data-reveal='copy']",
           { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.75 },
-          0.95,
+          { opacity: 1, y: 0, duration: compact ? 0.5 : 0.75 },
+          compact ? 0.44 : 0.95,
         )
         .fromTo(
           "[data-reveal='cta']",
           { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.7 },
-          1.1,
-        )
-        .fromTo(
-          "[data-reveal='label']",
-          { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.6 },
-          1.25,
-        )
-        .fromTo(
-          "[data-house]",
-          { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, duration: 0.65, stagger: 0.08 },
-          1.35,
+          { opacity: 1, y: 0, duration: compact ? 0.5 : 0.7 },
+          compact ? 0.54 : 1.1,
         );
 
-      ScrollTrigger.create({
-        trigger: root.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 0.6,
-        onUpdate: (self) => {
-          const p = self.progress;
-          gsap.set("[data-reveal='mark']", { y: p * -28 });
-          gsap.set("[data-reveal='title']", { y: p * -16 });
+      gsap.fromTo(
+        "[data-reveal='label']",
+        { opacity: 0, y: 12 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: compact ? 0.5 : 0.6,
+          ease: EASE.cinematic,
+          scrollTrigger: {
+            trigger: "[data-reveal='label']",
+            start: compact ? "top 92%" : "top 88%",
+            once: true,
+          },
         },
-      });
+      );
+
+      gsap.fromTo(
+        "[data-house]",
+        { opacity: 0, y: 18 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: compact ? 0.5 : 0.65,
+          stagger: compact ? 0.1 : 0.08,
+          ease: EASE.cinematic,
+          scrollTrigger: {
+            trigger: "#our-brands",
+            start: compact ? "top 90%" : "top 80%",
+            once: true,
+          },
+        },
+      );
+
+      if (!compact) {
+        ScrollTrigger.create({
+          trigger: root.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.6,
+          onUpdate: (self) => {
+            const p = self.progress;
+            gsap.set("[data-reveal='mark']", { y: p * -28 });
+            gsap.set("[data-reveal='title']", { y: p * -16 });
+          },
+        });
+      }
     },
     { scope: root },
   );

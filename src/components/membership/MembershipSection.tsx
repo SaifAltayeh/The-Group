@@ -7,7 +7,12 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { MembershipCard } from "@/components/membership/MembershipCard";
 import { WalletActions } from "@/components/membership/WalletActions";
 import { COPY } from "@/lib/constants/brands";
-import { EASE, getGsap, prefersInstantMotion } from "@/lib/animations/gsap";
+import {
+  EASE,
+  getGsap,
+  isCompactViewport,
+  prefersReducedMotion,
+} from "@/lib/animations/gsap";
 
 export function MembershipSection() {
   const root = useRef<HTMLElement>(null);
@@ -15,7 +20,7 @@ export function MembershipSection() {
   useGSAP(
     () => {
       const { gsap } = getGsap();
-      if (prefersInstantMotion()) {
+      if (prefersReducedMotion()) {
         gsap.set("[data-line], [data-reveal], [data-card]", {
           opacity: 1,
           y: 0,
@@ -26,11 +31,12 @@ export function MembershipSection() {
         return;
       }
 
+      const compact = isCompactViewport();
       const tl = gsap.timeline({
         defaults: { ease: EASE.cinematic },
         scrollTrigger: {
           trigger: root.current,
-          start: "top 72%",
+          start: compact ? "top 88%" : "top 72%",
           once: true,
         },
       });

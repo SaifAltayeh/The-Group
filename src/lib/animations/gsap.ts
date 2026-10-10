@@ -17,11 +17,10 @@ export function prefersReducedMotion() {
   );
 }
 
-export function prefersInstantMotion() {
+export function isCompactViewport() {
   return (
-    prefersReducedMotion() ||
-    (typeof window !== "undefined" &&
-      window.matchMedia("(max-width: 767px)").matches)
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 767px)").matches
   );
 }
 

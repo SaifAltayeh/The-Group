@@ -83,7 +83,9 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         }`}
       >
         <div className="flex items-center justify-between">
-          <TheGroupLogo className="h-[58px] w-auto" />
+          <div className="h-9 w-[6.4rem]">
+            <TheGroupLogo className="h-full w-full object-left" />
+          </div>
           <button
             ref={closeRef}
             type="button"
@@ -105,7 +107,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               key={item.href}
               href={item.href}
               onClick={onClose}
-              className="font-sans text-[clamp(2.4rem,11vw,3.8rem)] font-light leading-[1.05] text-ink transition-colors hover:text-gold"
+              className="font-sans text-[clamp(2rem,10vw,3.4rem)] font-light leading-[1.1] text-ink transition-colors hover:text-gold"
               style={{
                 transitionDelay: open ? `${120 + index * 60}ms` : "0ms",
                 opacity: open ? 1 : 0,
@@ -120,7 +122,11 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         </nav>
 
         <div className="border-t border-gold-muted pt-8">
-          <LuxuryButton href={ACCOUNT_NAV.join.href} onClick={onClose}>
+          <LuxuryButton
+            href={ACCOUNT_NAV.join.href}
+            onClick={onClose}
+            className="w-full"
+          >
             {ACCOUNT_NAV.join.label}
           </LuxuryButton>
         </div>

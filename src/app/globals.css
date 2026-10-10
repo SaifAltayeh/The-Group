@@ -28,11 +28,11 @@
 }
 
 @utility text-headline {
-  font-size: clamp(2.25rem, 1.4rem + 3vw, 4.5rem);
+  font-size: clamp(2rem, 1.25rem + 3.4vw, 4.5rem);
 }
 
 @utility page-x {
-  padding-inline: clamp(1.25rem, 5vw, 5.5rem);
+  padding-inline: clamp(1rem, 4.5vw, 5.5rem);
 }
 
 @utility page-max {
@@ -235,11 +235,17 @@ a {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
   [data-reveal],
   [data-house],
   [data-card],
   [data-nav] {
     opacity: 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .house-link {
+    min-height: 64px;
   }
 }

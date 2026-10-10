@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
-import { getGsap, prefersReducedMotion } from "@/lib/animations/gsap";
+import { getGsap, prefersInstantMotion, prefersReducedMotion } from "@/lib/animations/gsap";
 
 const NAV_OFFSET = -96;
 
@@ -63,7 +63,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const { gsap, ScrollTrigger } = getGsap();
-    const reduced = prefersReducedMotion();
+    const reduced = prefersInstantMotion();
     let removeTicker: (() => void) | undefined;
     let onResize: (() => void) | undefined;
 

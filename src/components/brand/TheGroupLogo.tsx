@@ -20,10 +20,7 @@ export function TheGroupLogo({
       width={GROUP.width}
       height={GROUP.height}
       priority={priority}
-      className={cn(
-        height ? "object-contain" : "h-auto w-auto object-contain",
-        className,
-      )}
+      className={cn("object-contain", className)}
       style={
         height
           ? { height, width: "auto", maxWidth: "100%" }

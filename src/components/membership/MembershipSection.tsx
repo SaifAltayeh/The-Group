@@ -7,7 +7,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { MembershipCard } from "@/components/membership/MembershipCard";
 import { WalletActions } from "@/components/membership/WalletActions";
 import { COPY } from "@/lib/constants/brands";
-import { EASE, getGsap, prefersReducedMotion } from "@/lib/animations/gsap";
+import { EASE, getGsap, prefersInstantMotion } from "@/lib/animations/gsap";
 
 export function MembershipSection() {
   const root = useRef<HTMLElement>(null);
@@ -15,7 +15,7 @@ export function MembershipSection() {
   useGSAP(
     () => {
       const { gsap } = getGsap();
-      if (prefersReducedMotion()) {
+      if (prefersInstantMotion()) {
         gsap.set("[data-line], [data-reveal], [data-card]", {
           opacity: 1,
           y: 0,
@@ -40,7 +40,12 @@ export function MembershipSection() {
         { opacity: 0, y: 16 },
         { opacity: 1, y: 0, duration: 0.7 },
       )
-        .to("[data-line]", { yPercent: 0, duration: 1.05, stagger: 0.18 }, 0.12)
+        .fromTo(
+          "[data-line]",
+          { yPercent: 110 },
+          { yPercent: 0, duration: 1.05, stagger: 0.18 },
+          0.12,
+        )
         .fromTo(
           "[data-reveal='copy']",
           { opacity: 0, y: 20 },
@@ -69,13 +74,13 @@ export function MembershipSection() {
       id="membership"
       className="relative bg-ivory scroll-mt-24"
     >
-      <div className="page-x page-max border-t border-gold-muted py-[7.5rem] lg:py-[9rem]">
-        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,0.45fr)] lg:items-center lg:gap-x-[6vw] lg:gap-y-0">
-          <div>
+      <div className="page-x page-max border-t border-gold-muted py-16 sm:py-[7.5rem] lg:py-[9rem]">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,0.45fr)] lg:items-center lg:gap-x-[6vw] lg:gap-y-0">
+          <div className="min-w-0">
             <div data-reveal="eyebrow">
               <SectionLabel>{COPY.membershipEyebrow}</SectionLabel>
             </div>
-            <div className="mt-8">
+            <div className="mt-6 sm:mt-8">
               <EditorialHeading
                 as="h2"
                 size="section"
@@ -88,21 +93,21 @@ export function MembershipSection() {
                 ]}
               />
             </div>
-            <div data-reveal="copy" className="mt-8 max-w-[42ch] space-y-5">
-              <p className="font-sans text-[16px] font-light leading-8 text-ink/72">
+            <div data-reveal="copy" className="mt-6 max-w-[42ch] space-y-4 sm:mt-8 sm:space-y-5">
+              <p className="font-sans text-[15px] font-light leading-7 text-ink/72 sm:text-[16px] sm:leading-8">
                 {COPY.membershipLead}
               </p>
-              <p className="font-sans text-[14px] leading-7 text-ink/50">
+              <p className="font-sans text-[13px] leading-6 text-ink/50 sm:text-[14px] sm:leading-7">
                 {COPY.membershipBody}
               </p>
             </div>
           </div>
 
-          <div className="flex justify-center lg:row-span-2 lg:justify-end">
+          <div className="flex w-full justify-center lg:row-span-2 lg:justify-end">
             <MembershipCard />
           </div>
 
-          <div>
+          <div className="flex justify-center lg:justify-start">
             <WalletActions />
           </div>
         </div>

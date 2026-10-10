@@ -17,6 +17,14 @@ export function prefersReducedMotion() {
   );
 }
 
+export function prefersInstantMotion() {
+  return (
+    prefersReducedMotion() ||
+    (typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 767px)").matches)
+  );
+}
+
 export const EASE = {
   cinematic: "power3.out",
   soft: "power2.out",

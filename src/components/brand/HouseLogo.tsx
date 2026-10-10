@@ -23,7 +23,7 @@ export function HouseLogo({
       alt={brand.alt}
       width={brand.width}
       height={brand.height}
-      className={cn("bg-transparent object-contain", className)}
+      className={cn("max-w-full bg-transparent object-contain", className)}
       style={{
         height: markHeight,
         width: "auto",

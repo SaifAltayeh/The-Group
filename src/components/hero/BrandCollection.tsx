@@ -8,12 +8,12 @@ export function BrandCollection() {
       <div data-reveal="label" className="flex justify-center">
         <SectionLabel line="both">Our Houses</SectionLabel>
       </div>
-      <ul className="mt-10 grid grid-cols-2 items-center gap-x-8 gap-y-14 md:grid-cols-4 md:gap-x-6 lg:mt-14 lg:gap-x-10">
+      <ul className="mt-8 grid grid-cols-2 items-center gap-x-4 gap-y-10 sm:mt-10 sm:gap-x-8 sm:gap-y-14 md:grid-cols-4 md:gap-x-6 lg:mt-14 lg:gap-x-10">
         {HOUSES.map((brand, index) => (
           <li
             key={brand.id}
             data-house
-            className="relative flex items-center justify-center"
+            className="relative flex min-w-0 items-center justify-center overflow-hidden"
           >
             {index > 0 ? (
               <span
@@ -26,7 +26,7 @@ export function BrandCollection() {
               className="house-link min-h-[88px] w-full px-1 py-2"
               aria-label={brand.label}
             >
-              <HouseLogo brand={brand} />
+              <HouseLogo brand={brand} className="!max-h-8 sm:!max-h-none" />
             </a>
           </li>
         ))}

@@ -25,8 +25,8 @@ export function LuxuryButton({
 }: LuxuryButtonProps) {
   const classes = cn(
     "group relative inline-flex items-center justify-center gap-3 overflow-hidden",
-    "px-6 py-3.5 sm:px-7",
-    "font-sans text-[11px] font-medium uppercase tracking-[0.28em]",
+    "px-4 py-3 sm:px-7 sm:py-3.5",
+    "font-sans text-[10px] font-medium uppercase tracking-[0.18em] sm:text-[11px] sm:tracking-[0.28em]",
     "transition-[color,border-color,background-color] duration-500 ease-out",
     "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold",
     variant === "fill" &&

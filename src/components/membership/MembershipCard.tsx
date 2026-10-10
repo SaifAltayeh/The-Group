@@ -19,10 +19,10 @@ const FALLBACK_CARD: MembershipCardPayload = {
 };
 
 const CARD_HOUSES = [
-  { id: "delfino" as const, height: 22 },
-  { id: "moustache-women" as const, height: 26 },
-  { id: "ipo" as const, height: 30 },
-  { id: "moustache" as const, height: 18 },
+  { id: "delfino" as const, height: 16 },
+  { id: "moustache-women" as const, height: 18 },
+  { id: "ipo" as const, height: 22 },
+  { id: "moustache" as const, height: 14 },
 ];
 
 export function MembershipCard() {
@@ -77,24 +77,24 @@ export function MembershipCard() {
   };
 
   return (
-    <div className="perspective-[1400px]">
+    <div className="w-full max-w-[340px] perspective-[1400px] sm:max-w-[420px]">
       <article
         ref={cardRef}
         data-card
         onMouseMove={onMove}
         onMouseLeave={resetTilt}
-        className="relative grid aspect-[2/3] w-full max-w-[420px] grid-rows-[auto_1fr_auto_auto] overflow-hidden rounded-[22px] bg-black px-8 pb-9 pt-8 text-white shadow-[0_28px_70px_rgba(0,0,0,0.35)] transition-[transform,box-shadow] duration-300 ease-out will-change-transform sm:px-10 sm:pb-10 sm:pt-9"
+        className="relative grid aspect-[2/3] w-full grid-rows-[auto_1fr_auto_auto] overflow-hidden rounded-[22px] bg-black px-5 pb-6 pt-6 text-white shadow-[0_28px_70px_rgba(0,0,0,0.35)] transition-[transform,box-shadow] duration-300 ease-out will-change-transform sm:px-10 sm:pb-10 sm:pt-9"
         style={{ transformStyle: "preserve-3d" }}
       >
-        <header className="flex items-start justify-between gap-4">
-          <TheGroupLogo height={50} />
-          <p className="pt-1 font-sans text-[12px] font-light tracking-[0.02em] text-white/90">
+        <header className="flex items-start justify-between gap-3">
+          <TheGroupLogo className="h-8 w-auto sm:h-[50px]" />
+          <p className="shrink-0 pt-1 font-sans text-[11px] font-light tracking-[0.02em] text-white/90 sm:text-[12px]">
             {card.id}
           </p>
         </header>
 
         <div className="flex items-center">
-          <ul className="flex w-full items-center justify-between gap-2">
+          <ul className="flex w-full items-center justify-between gap-1 sm:gap-2">
             {CARD_HOUSES.map((item) => {
               const brand = HOUSES.find((house) => house.id === item.id);
               if (!brand) return null;
@@ -107,26 +107,26 @@ export function MembershipCard() {
           </ul>
         </div>
 
-        <div className="flex items-end justify-between gap-6">
-          <div>
-            <p className="font-sans text-[12px] font-light text-white/75">
-                {card.nameLabel}
+        <div className="flex items-end justify-between gap-3 sm:gap-6">
+          <div className="min-w-0">
+            <p className="font-sans text-[11px] font-light text-white/75 sm:text-[12px]">
+              {card.nameLabel}
             </p>
-            <p className="mt-2 font-sans text-[1.4rem] font-light leading-none tracking-[-0.02em] text-white">
-                {card.memberName}
+            <p className="mt-1.5 truncate font-sans text-[1.15rem] font-light leading-none tracking-[-0.02em] text-white sm:mt-2 sm:text-[1.4rem]">
+              {card.memberName}
             </p>
           </div>
-          <div className="text-right">
-            <p className="font-sans text-[12px] font-light text-white/75">
-                {card.pointsLabel}
+          <div className="shrink-0 text-right">
+            <p className="font-sans text-[11px] font-light text-white/75 sm:text-[12px]">
+              {card.pointsLabel}
             </p>
-            <p className="mt-2 font-sans text-[1.4rem] font-light leading-none tracking-[-0.02em] text-white">
-                {card.points}
+            <p className="mt-1.5 font-sans text-[1.15rem] font-light leading-none tracking-[-0.02em] text-white sm:mt-2 sm:text-[1.4rem]">
+              {card.points}
             </p>
           </div>
         </div>
 
-        <div className="mt-9 flex justify-center sm:mt-10">
+        <div className="mt-6 flex justify-center sm:mt-10">
           {qr ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -134,10 +134,10 @@ export function MembershipCard() {
               alt="Demonstration loyalty QR code"
               width={180}
               height={180}
-              className="h-[156px] w-[156px] sm:h-[176px] sm:w-[176px]"
+              className="h-[120px] w-[120px] sm:h-[176px] sm:w-[176px]"
             />
           ) : (
-            <div className="h-[156px] w-[156px] bg-black sm:h-[176px] sm:w-[176px]" />
+            <div className="h-[120px] w-[120px] bg-black sm:h-[176px] sm:w-[176px]" />
           )}
         </div>
       </article>

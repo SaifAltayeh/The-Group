@@ -7,7 +7,7 @@ import { BrandCollection } from "@/components/hero/BrandCollection";
 import { LuxuryButton } from "@/components/ui/LuxuryButton";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { COPY } from "@/lib/constants/brands";
-import { EASE, getGsap, prefersReducedMotion } from "@/lib/animations/gsap";
+import { EASE, getGsap, prefersInstantMotion } from "@/lib/animations/gsap";
 
 export function HeroSection() {
   const root = useRef<HTMLElement>(null);
@@ -16,7 +16,7 @@ export function HeroSection() {
     () => {
       const { gsap, ScrollTrigger } = getGsap();
 
-      if (prefersReducedMotion()) {
+      if (prefersInstantMotion()) {
         gsap.set("[data-reveal], [data-house]", {
           opacity: 1,
           y: 0,
@@ -90,43 +90,43 @@ export function HeroSection() {
     <section
       ref={root}
       id="home"
-      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ivory pt-[108px] lg:pt-[118px]"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ivory pt-[88px] sm:pt-[108px] lg:pt-[118px]"
     >
       <div className="page-x page-max relative flex flex-1 flex-col">
-        <div className="flex flex-1 flex-col items-center justify-center px-2 py-10 text-center sm:py-14">
+        <div className="flex flex-1 flex-col items-center justify-center px-0 py-8 text-center sm:px-2 sm:py-14">
           <div data-reveal="eyebrow" className="flex justify-center">
             <SectionLabel line="both">The House of Brands</SectionLabel>
           </div>
 
           <div
             data-reveal="mark"
-            className="mt-10 w-full max-w-[min(86vw,34rem)] sm:mt-12"
+            className="mt-7 w-full max-w-[min(78vw,20rem)] sm:mt-12 sm:max-w-[min(86vw,34rem)]"
           >
             <TheGroupLogo priority className="h-auto w-full" />
           </div>
 
           <h1
             data-reveal="title"
-            className="mt-10 max-w-[18ch] font-sans text-[clamp(1.65rem,1.1rem+2vw,2.55rem)] font-light leading-snug tracking-[-0.03em] text-ink sm:mt-12"
+            className="mt-7 max-w-[16ch] font-sans text-[clamp(1.45rem,1.05rem+2vw,2.55rem)] font-light leading-snug tracking-[-0.03em] text-ink sm:mt-12 sm:max-w-[18ch]"
           >
             Beyond a single identity<span className="text-gold">.</span>
           </h1>
 
           <p
             data-reveal="copy"
-            className="mt-6 max-w-[42ch] font-sans text-[15px] font-light leading-7 text-ink/60 sm:text-[16px] sm:leading-8"
+            className="mt-5 max-w-[36ch] px-1 font-sans text-[14px] font-light leading-7 text-ink/60 sm:mt-6 sm:max-w-[42ch] sm:text-[16px] sm:leading-8"
           >
             {COPY.heroSupport}
           </p>
 
-          <div data-reveal="cta" className="mt-9">
+          <div data-reveal="cta" className="mt-7 sm:mt-9">
             <LuxuryButton href="#our-brands" variant="outline">
               Explore Our Brands
             </LuxuryButton>
           </div>
         </div>
 
-        <div className="border-t border-gold-muted pb-16 pt-10 lg:pb-20 lg:pt-12">
+        <div className="border-t border-gold-muted pb-14 pt-8 lg:pb-20 lg:pt-12">
           <BrandCollection />
         </div>
       </div>

@@ -14,22 +14,22 @@ export function SectionLabel({
   return (
     <div
       className={cn(
-        "flex items-center gap-5 text-gold",
+        "flex max-w-full items-center gap-3 text-gold sm:gap-5",
         className,
       )}
     >
       {(line === "before" || line === "both") && (
-        <span className="h-px w-10 bg-gold/70 sm:w-14" aria-hidden />
+        <span className="h-px w-6 shrink-0 bg-gold/70 sm:w-14" aria-hidden />
       )}
-      <p className="font-sans text-[10px] font-medium uppercase tracking-[0.42em] sm:text-[11px]">
+      <p className="min-w-0 font-sans text-[9px] font-medium uppercase leading-5 tracking-[0.2em] sm:text-[11px] sm:tracking-[0.42em]">
         {children}
       </p>
       {(line === "after" || line === "both") && (
         <span
           className={
             line === "both"
-              ? "h-px w-10 bg-gold/70 sm:w-14"
-              : "h-px max-w-28 flex-1 bg-gold/70 sm:max-w-40"
+              ? "h-px w-6 shrink-0 bg-gold/70 sm:w-14"
+              : "h-px max-w-16 flex-1 bg-gold/70 sm:max-w-40"
           }
           aria-hidden
         />

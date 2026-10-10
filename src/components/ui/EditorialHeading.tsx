@@ -25,11 +25,7 @@ export function EditorialHeading({
     >
       {lines.map((line, index) => (
         <span key={index} className="block overflow-hidden">
-          <span
-            data-line
-            className="block will-change-transform"
-            style={{ transform: "translateY(110%)" }}
-          >
+          <span data-line className="block will-change-transform">
             {line}
           </span>
         </span>

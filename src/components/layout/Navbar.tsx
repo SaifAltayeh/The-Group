@@ -7,7 +7,7 @@ import { TheGroupLogo } from "@/components/brand/TheGroupLogo";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { ACCOUNT_NAV, PRIMARY_NAV } from "@/lib/constants/navigation";
 import { cn } from "@/lib/cn";
-import { getGsap, prefersReducedMotion } from "@/lib/animations/gsap";
+import { getGsap, prefersInstantMotion } from "@/lib/animations/gsap";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +25,7 @@ export function Navbar() {
   useEffect(() => {
     const { gsap } = getGsap();
     const ctx = gsap.context(() => {
-      if (prefersReducedMotion()) {
+      if (prefersInstantMotion()) {
         gsap.set("[data-nav]", { opacity: 1, y: 0 });
         return;
       }
@@ -48,17 +48,20 @@ export function Navbar() {
           "fixed inset-x-0 top-0 z-50 page-x",
           "transition-[height,background-color,backdrop-filter,padding] duration-500",
           scrolled
-            ? "h-[72px] bg-ivory/86 backdrop-blur-md"
-            : "h-[88px] bg-transparent lg:h-[92px]",
+            ? "h-16 bg-ivory/86 backdrop-blur-md sm:h-[72px]"
+            : "h-[72px] bg-transparent sm:h-[88px] lg:h-[92px]",
         )}
       >
-        <div className="page-max flex h-full items-center justify-between gap-6">
+        <div className="page-max flex h-full items-center justify-between gap-4">
           <Link
             href="/#home"
             aria-label="The Group® home"
-            className="relative z-10 shrink-0"
+            className="relative z-10 block h-10 w-[7.2rem] shrink-0 sm:h-[52px] sm:w-[8.75rem]"
           >
-            <TheGroupLogo priority className="h-[52px] w-auto sm:h-[58px]" />
+            <TheGroupLogo
+              priority
+              className="h-full w-full object-left"
+            />
           </Link>
 
           <nav

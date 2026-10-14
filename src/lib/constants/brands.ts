@@ -4,8 +4,8 @@ export const GROUP = {
   src: "/logos/the-group.png",
   symbolSrc: "/logos/the-group.png",
   alt: "The Group®",
-  width: 1001,
-  height: 373,
+  width: 824,
+  height: 165,
 } as const;
 
 export type HouseBrand = {

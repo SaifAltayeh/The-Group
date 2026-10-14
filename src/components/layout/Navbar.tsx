@@ -56,7 +56,7 @@ export function Navbar() {
           <Link
             href="/#home"
             aria-label="The Group® home"
-            className="relative z-10 block h-10 w-[7.2rem] shrink-0 sm:h-[52px] sm:w-[8.75rem]"
+            className="relative z-10 block h-8 w-[10.5rem] shrink-0 sm:h-10 sm:w-[13rem]"
           >
             <TheGroupLogo
               priority

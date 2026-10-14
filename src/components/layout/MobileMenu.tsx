@@ -83,7 +83,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         }`}
       >
         <div className="flex items-center justify-between">
-          <div className="h-9 w-[6.4rem]">
+          <div className="h-8 w-[10.5rem]">
             <TheGroupLogo className="h-full w-full object-left" />
           </div>
           <button
